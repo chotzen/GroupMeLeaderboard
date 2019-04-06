@@ -3,20 +3,27 @@ namespace :groupme do
   task load_leaderboard: :environment do
     Person.destroy_all
     messages = update_messages
+
+    people = {}
+
     messages.each do |m|
       user_id = m["user_id"]
+
       unless user_id == "system" or user_id == "calendar"
-        person = nil
-        realname = m["name"]
-        unless Person.find_by(name: user_id) 
-          person = Person.create(name: user_id, message_count: 0)
-        else
-          person = Person.find_by(name: user_id)
+        real_name = m["name"]
+        
+        unless people[user_id]
+          people[user_id] = {real_name: real_name, message_count: 0}
         end
 
-        person.update_attribute(:message_count, person.message_count + 1)
-        person.update_attribute(:real_name, realname)
-      end
+        people[user_id][:message_count] += 1
+        people[user_id][:real_name] = real_name
+       end
+    end
+
+    people.each do |person|
+      p person[1]
+      Person.create(real_name: person[1][:real_name], message_count: person[1][:message_count].to_i)
     end
   end
 
