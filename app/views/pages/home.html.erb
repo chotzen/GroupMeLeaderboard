@@ -1,0 +1,18 @@
+<h1>Caltech GroupMe Leaderboard</h1>
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Messages</th>
+  </tr>
+  <% n = 1 %>
+  <% @people.each do |p| %>
+    <tr>
+      <%= content_tag :td, n.to_s %>
+      <%= content_tag :td, p.real_name %>
+      <%= content_tag :td, p.message_count.to_s %>
+    </tr>
+    <% n += 1 %>
+  <% end %>
+
+</table>
