@@ -53,7 +53,6 @@ def update_messages
   start_time = Time.now
   while true
     begin
-      i += 1
       messages += Messages.new(ENV["group_id"], 100, before_id).messages
       before_id = messages.last['id']
       runtime = (Time.now - start_time)
