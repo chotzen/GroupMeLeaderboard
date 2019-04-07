@@ -1,16 +1,28 @@
 <h1>Caltech GroupMe Leaderboard</h1>
-<table>
+<table class="sortable">
   <tr>
-    <th>Rank</th>
     <th>Name</th>
     <th>Messages</th>
+    <th>Likes</th>
+    <th>/Message</th>
+    <th>Words</th>
+    <th>/Message</th>
+    <th>Likes/Words</th>
   </tr>
   <% n = 1 %>
   <% @people.each do |p| %>
     <tr>
-      <%= content_tag :td, n.to_s %>
+      <!--%= content_tag :td, n.to_s %-->
       <%= content_tag :td, p.real_name %>
       <%= content_tag :td, p.message_count.to_s %>
+      <%= content_tag :td, p.likes.to_s %>
+      <%= content_tag :td, (p.likes.to_d / p.message_count.to_d).round(2).to_s %>
+      <%= content_tag :td, p.words.to_s %>
+      <%= content_tag :td, (p.words.to_d / p.message_count.to_d).round(2).to_s %>
+      <%= content_tag :td, (p.likes.to_d / p.words.to_d).round(2).to_s %>
+
+
+
     </tr>
     <% n += 1 %>
   <% end %>

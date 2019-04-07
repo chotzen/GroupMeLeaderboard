@@ -15,6 +15,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'will_paginate'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'httparty'
+gem 'sortable-table', github: 'caselle/sortable-table'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

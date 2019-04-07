@@ -13,17 +13,22 @@ namespace :groupme do
         real_name = m["name"]
         
         unless people[user_id]
-          people[user_id] = {real_name: real_name, message_count: 0}
+          people[user_id] = {real_name: real_name, message_count: 0, likes: 0, words: 0}
         end
 
         people[user_id][:message_count] += 1
+        people[user_id][:likes] += m["favorited_by"].length
         people[user_id][:real_name] = real_name
+        if m["text"]
+          people[user_id][:words] += m["text"].split.length
+        end
        end
     end
 
     people.each do |person|
       p person[1]
-      Person.create(real_name: person[1][:real_name], message_count: person[1][:message_count].to_i)
+      Person.create(real_name: person[1][:real_name], message_count: person[1][:message_count].to_i, 
+          likes: person[1][:likes].to_i, words: person[1][:words].to_i)
     end
   end
 

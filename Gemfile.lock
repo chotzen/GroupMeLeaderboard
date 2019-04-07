@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/caselle/sortable-table.git
+  revision: a9953325741b846f488929109d1a3bb0101c8347
+  specs:
+    sortable-table (0.1.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -219,6 +227,7 @@ DEPENDENCIES
   rails (~> 5.2.2)
   sass-rails (~> 5.0)
   selenium-webdriver
+  sortable-table!
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
