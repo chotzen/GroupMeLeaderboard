@@ -1,0 +1,2 @@
+module BodemHelper
+end
